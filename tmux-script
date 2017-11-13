@@ -1,0 +1,25 @@
+#!/bin/bash
+TMUX_CMD='tmux'
+
+window() {
+    FIRST=true
+    NAME=$1
+    shift
+
+    for i in "$@"
+    do
+        COMMAND="ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=61 $i"
+        if [ $FIRST == true ]
+        then
+            FIRST=false
+            $TMUX_CMD new-window -n "$NAME" "$COMMAND"
+        else
+            $TMUX_CMD split-window -t "$NAME" -v "$COMMAND"
+            $TMUX_CMD select-layout tiled
+        fi
+    done
+    $TMUX_CMD setw -t "$NAME" synchronize-panes on
+    $TMUX_CMD select-layout -t "$NAME" tiled
+}
+
+window your-tag your-host
