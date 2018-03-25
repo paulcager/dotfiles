@@ -1,0 +1,12 @@
+[alias]
+        last = log -1 HEAD
+        ff = pull --ff-only --prune
+        pf = push --force-with-lease
+        co = checkout
+[diff]
+        tool = vimdiff
+
+[difftool "vimdiff"]
+        cmd = vimdiff "$LOCAL" "$REMOTE"
+[pull]
+        ff = only

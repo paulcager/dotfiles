@@ -1,3 +1,4 @@
+set diffopt=filler,iwhite
 map <F5> :n<CR>
 set ai
 nnoremap <silent> <F3> :nohlsearch<CR>
