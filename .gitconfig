@@ -1,3 +1,17 @@
+# Shared git config. Included from ~/.gitconfig on each machine:
+#
+#     [include]
+#             path = ~/git/dotfiles/.gitconfig
+#
+# Deliberately contains NO [user] identity and no machine-specific paths
+# (e.g. safe.directory) - those stay in the local ~/.gitconfig, which is not
+# symlinked. This repo is public, so keeping the email address out of it also
+# keeps it out of a trivially scrapeable file.
+#
+# Note on precedence: git applies later values, so settings here override
+# anything set ABOVE the [include] line in ~/.gitconfig, and are overridden by
+# anything set below it.
+
 [alias]
         last = log -1 HEAD
         ff = pull --ff-only --prune
@@ -10,3 +24,9 @@
         cmd = vimdiff "$LOCAL" "$REMOTE"
 [pull]
         ff = only
+[core]
+        editor = vi
+[init]
+        defaultBranch = master
+[push]
+        autoSetupremote = true
